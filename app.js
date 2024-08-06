@@ -150,7 +150,7 @@ headerObserver.observe(header);
 
 function count() {
     let cartIcon = document.getElementById("cartAmount");
-    cartIcon.innerHTML = localStorageData.map((x) => x.item).reduce((x, y) => x + y);
+    cartIcon.innerHTML = localStorageData.map((x) => x.item).reduce((x, y) => x + y, 0);
 };
 count();
 

@@ -1,11 +1,12 @@
 const API = fetch('https://fakestoreapi.com/products');
 let ShoppingCart = document.getElementById("shopping-cart");
 let label = document.getElementById("label");
-let localStorageData = JSON.parse(localStorage.getItem("data"));
+let localStorageData = JSON.parse(localStorage.getItem("data")) || [];
 let emptyCart = document.getElementById("empty-cart");
 function count() {
     let cartIcon = document.getElementById("cartAmount");
-    cartIcon.innerHTML = localStorageData.map((x) => x.item).reduce((x, y) => x + y);
+    cartIcon.innerHTML = localStorageData.map((x) => x.item).reduce((x, y) => x + y, 0);
+
 };
 count()
 function generateCartItems() {
@@ -85,7 +86,7 @@ function generateCartItems() {
 generateCartItems();
 function increment(id) {
     let selectedItem = id;
-    let search = localStorageData.find((x) => x.id === selectedItem);
+    let search = localStorageData.find((x) => x.id === selectedItem) || [];
 
     if (search === undefined) {
         localStorageData.push({
@@ -103,7 +104,7 @@ function increment(id) {
 
 function decrement(id) {
     let selectedItem = id;
-    let search = localStorageData.find((x) => x.id === selectedItem);
+    let search = localStorageData.find((x) => x.id === selectedItem) || [];
 
     if (search === undefined) return;
     else if (search.item === 0) return;
@@ -168,7 +169,7 @@ function TotalAmount() {
 TotalAmount();
 function removeItem(id) {
     let selectedItem = id;
-    localStorageData = localStorageData.filter((x) => x.id !== selectedItem);
+    localStorageData = localStorageData.filter((x) => x.id !== selectedItem) || [];
     console.log(localStorageData);
     generateCartItems();
     localStorage.setItem("data", JSON.stringify(localStorageData));
