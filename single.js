@@ -77,7 +77,6 @@ function getSingleData() {
                                 </div>
                             </div>
                         <button class="HomeBtn" onclick="addToCart(${data.id})">Add to Cart</button>
-
                             </div>
                         </div>
                     </div>
